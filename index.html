@@ -133,7 +133,7 @@ nav button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff
 </nav>
 
 <script>
-const PUB={"key_ops":["verify"],"ext":true,"kty":"EC","x":"HuX9iqenG8EYPgMNLeHbBaqI5u0-qYo3lq4-rYtqaL0","y":"HRHRZ8ccCeuAQMPtcJsZBWpXt0eI1p9VSjHrpDK1kw4","crv":"P-256"};const LIMIT=10,DAY=864e5;
+const PUB={"key_ops":["verify"],"ext":true,"kty":"EC","x":"u-4QJFXALKlOupqgJ-u7UgSq_X4PF6ivLjqsQp-oN-0","y":"2_U0HTDmTzfYQ8XFvby2ju7JDeqcMxH_DdTde0s0Mqo","crv":"P-256"};const LIMIT=10,DAY=864e5;
 const DEF_API="https://api.ikyyxd.my.id/tools/skiplink/sfl?url=";
 const COLORS={Ungu:["#c05cff","#d98cff"],Indigo:["#6c6cff","#9a9aff"],Biru:["#1e90ff","#6cb8ff"],Pink:["#ff4d7a","#ff8aa8"],Oranye:["#ff9f1c","#ffc15c"],Hijau:["#2ecc71","#7be3a6"]};
 const IC={bolt:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',home:'<path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/>',hist:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/>',sl:'<path d="M4 6h9M17 6h3M4 18h3M11 18h9"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="18" r="2"/>',speed:'<path d="M12 14l4-4"/><path d="M3.3 17a10 10 0 1 1 17.4 0"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',drop:'<path d="M12 3s7 7 7 12a7 7 0 0 1-14 0c0-5 7-12 7-12z"/>',close:'<path d="M6 6l12 12M18 6L6 18"/>',palette:'<path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2s0-2 1.5-2h2a3 3 0 0 0 3-3 9 9 0 0 0-8-11z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',moon:'<path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/>',mon:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',wave:'<path d="M3 8c3-3 6 3 9 0s6 3 9 0M3 14c3-3 6 3 9 0s6 3 9 0"/>',key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>',pulse:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',check:'<path d="M5 12l5 5 9-10"/>',copy:'<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h3"/>',ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'};
@@ -185,9 +185,21 @@ async function check(tok){
   const ok=await crypto.subtle.verify({name:"ECDSA",hash:"SHA-256"},k,b64u(p[2]),new TextEncoder().encode(p[1]));
   if(!ok)return 0;const d=JSON.parse(new TextDecoder().decode(b64u(p[1])));
   return d.u===UID&&d.e>Date.now()?d.e:0}catch(e){return 0}}
+async function why(tok){
+ try{const p=String(tok).trim().split(".");if(p.length!==3||p[0]!=="KYZZ")return "Link rusak/terpotong. Minta link baru.";
+  const k=await crypto.subtle.importKey("jwk",PUB,{name:"ECDSA",namedCurve:"P-256"},false,["verify"]);
+  const ok=await crypto.subtle.verify({name:"ECDSA",hash:"SHA-256"},k,b64u(p[2]),new TextEncoder().encode(p[1]));
+  if(!ok)return "Kunci tidak cocok. Web ini belum versi terbaru, atau link dibuat dari owner versi lain.";
+  const d=JSON.parse(new TextDecoder().decode(b64u(p[1])));
+  if(d.u!==UID)return "ID tidak cocok. Link untuk "+d.u+", ID di web ini "+UID+". Cek domain web & ID yang dikirim.";
+  if(d.e<=Date.now())return "Link sudah kedaluwarsa.";
+  return "Tidak diketahui."}catch(e){return "Link rusak: "+e.message}}
 async function activate(t){const e=await check(t);if(e){EXP=e;wonder=true;S.set("tok",String(t).trim());vib(20);return true}return false}
 
-const copy=t=>{try{navigator.clipboard.writeText(t);vib(15)}catch(e){}};
+async function copyText(t){
+ try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);return true}}catch(e){}
+ try{const a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;top:0;left:0;opacity:0";document.body.appendChild(a);a.focus();a.select();a.setSelectionRange(0,t.length);const ok=document.execCommand("copy");a.remove();return ok}catch(e){return false}}
+const copy=async t=>{const ok=await copyText(t);if(ok)vib(15);else prompt("Salin manual:",t);return ok};
 function renderHist(){
   const h=S.get("hist",[]),box=$("hist");box.innerHTML="";
   if(!h.length){box.innerHTML='<p class="hint" style="margin:30px 0"><b>Belum ada riwayat</b><br>Tautan yang kamu bypass akan muncul di sini.</p>';return}
@@ -239,7 +251,7 @@ $("go").onclick=async()=>{
     r.innerHTML='<div class="rh"><div class="ck">'+ico("check")+'</div><b>Bypass berhasil!</b><span class="tm"></span></div><div class="lk"></div><div class="rb"><button class="btn" id="cp">'+ico("copy")+' Salin Link</button><button class="btn g" id="op">'+ico("ext")+' Buka Link</button></div>';
     r.querySelector(".tm").textContent=sec+" dtk · Mesin Ikyyxd";
     r.querySelector(".lk").textContent=out;
-    $("cp").onclick=()=>{copy(out);$("cp").innerHTML=ico("check")+" Tersalin"};
+    $("cp").onclick=async()=>{if(await copy(out))$("cp").innerHTML=ico("check")+" Tersalin"};
     $("op").onclick=()=>open(out,"_blank","noopener");
     r.scrollIntoView({behavior:"smooth",block:"center"});
     if(!cache){const hh=S.get("hist",[]);hh.unshift({src:link,out});S.set("hist",hh.slice(0,50));
@@ -248,10 +260,10 @@ $("go").onclick=async()=>{
   }catch(e){prog(0,"❌ <b>Gagal:</b> "+e.message+"<br>Coba lagi.")}
   busy=false;$("go").disabled=false;stat();
 };
-$("uid").textContent=UID;$("uid").onclick=()=>{copy(UID);$("uid").textContent="✓ Tersalin";setTimeout(()=>$("uid").textContent=UID,1200)};
+$("uid").textContent=UID;$("uid").onclick=async()=>{if(await copy(UID)){$("uid").textContent="✓ Tersalin";setTimeout(()=>$("uid").textContent=UID,1200)}};
 applyTheme();stat();
 (async()=>{const t=S.get("tok","");if(t){EXP=await check(t);wonder=!!EXP;if(!EXP)S.set("tok","")}
  const m=location.hash.match(/k=([^&]+)/);
- if(m){const ok=await activate(decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname+location.search);alert(ok?"Premium aktif ✔":"Kode tidak valid, kedaluwarsa, atau bukan untuk ID ini")}
+ if(m){const ok=await activate(decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname+location.search);alert(ok?"Premium aktif ✔":"Gagal: "+await why(decodeURIComponent(m[1])))}
  stat()})();
 </script></body></html>
