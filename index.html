@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kyzz Bypass</title>
+<style>
+:root{--ac:#c05cff;--ac2:#d98cff;--bg:#05050d;--card:rgba(255,255,255,.055);--in:rgba(255,255,255,.07);--bd:rgba(255,255,255,.13);--tx:#f4f4fa;--mut:#9b9cb2}
+:root[data-t=light]{--bg:#eeeef7;--card:rgba(255,255,255,.8);--in:rgba(0,0,0,.05);--bd:rgba(0,0,0,.1);--tx:#15151f;--mut:#666880}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,Roboto,sans-serif;max-width:520px;margin:auto;padding:16px 16px 120px;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0,color-mix(in srgb,var(--ac) 22%,transparent),transparent 60%);pointer-events:none;z-index:-1}
+svg{width:1.2em;height:1.2em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+.page{display:none}.page.on{display:block}.anim .page.on{animation:in .35s}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.logo{width:76px;height:76px;margin:10px auto 14px;border-radius:24px;background:linear-gradient(145deg,var(--ac),var(--ac2));display:grid;place-items:center;color:#fff;font-size:34px;box-shadow:0 0 44px color-mix(in srgb,var(--ac) 55%,transparent)}
+h1{text-align:center;margin:0 0 10px;font-size:2.3rem;font-weight:800;color:var(--ac2)}
+.sub{text-align:center;color:var(--mut);margin:0 6px 16px;line-height:1.5}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+.pill{display:flex;gap:6px;align-items:center;padding:9px 13px;border-radius:99px;background:var(--card);border:1px solid var(--bd);font-size:.85rem;font-weight:600}
+.pill.a{color:var(--ac2)}
+.card{background:linear-gradient(180deg,var(--card),transparent 120%);border:1px solid var(--bd);border-radius:28px;padding:20px;margin-bottom:16px;backdrop-filter:blur(14px);box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.lb{font-weight:700;color:var(--mut);margin-bottom:12px}
+.iw{position:relative;margin-bottom:14px}
+.iw>svg{position:absolute;left:16px;top:17px;color:var(--ac2);width:1.3em;height:1.3em}
+input[type=text],input[type=password]{width:100%;padding:16px 16px 16px 48px;border-radius:18px;border:1px solid var(--bd);background:var(--in);color:var(--tx);font-size:1.05rem;outline:0}
+input.p{padding-left:16px}
+.x{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;border:0;background:var(--bd);color:var(--tx);display:none;place-items:center}
+.btn{width:100%;padding:17px;border:0;border-radius:18px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;font-weight:700;font-size:1.1rem;box-shadow:0 8px 28px color-mix(in srgb,var(--ac) 40%,transparent)}
+.btn:disabled{opacity:.55}
+.btn.g{background:var(--in);border:1px solid var(--bd);box-shadow:none;color:var(--tx)}
+.btn.s{padding:12px 14px;font-size:.9rem;border-radius:14px;width:auto}
+.hint{text-align:center;color:var(--mut);font-size:.88rem;margin:14px 0 0;line-height:1.5}
+.hint b{color:var(--tx)}
+.bar{height:5px;border-radius:9px;background:var(--bd);overflow:hidden;margin:14px 0 8px;display:none}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .3s}
+.st{font-size:.88rem;color:var(--mut);line-height:1.7;display:none}.st b{color:var(--tx)}
+.pw{display:flex;gap:8px;align-items:center}.pw input{margin:0;flex:1}.pw .btn{width:auto;padding:14px 16px;font-size:.95rem;border-radius:16px}
+.bdg{display:inline-block;margin-top:10px;padding:6px 12px;border-radius:99px;background:var(--in);border:1px solid var(--bd);font-size:.8rem;color:var(--ac2);font-weight:700}
+.rh{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.ck{width:54px;height:54px;border-radius:50%;background:#2ecc71;display:grid;place-items:center;color:#fff;font-size:26px;flex:none;box-shadow:0 0 24px rgba(46,204,113,.5)}
+.rh b{font-size:1.2rem;flex:1}
+.tm{font-size:.78rem;color:var(--mut);border:1px solid var(--bd);border-radius:99px;padding:8px 12px;background:var(--in);white-space:nowrap}
+.lk{font-family:ui-monospace,monospace;font-size:.95rem;padding:18px;border-radius:18px;background:var(--in);border:1px solid var(--bd);word-break:break-all;line-height:1.6}
+.rb{display:flex;gap:10px;margin-top:16px}.rb .btn{flex:1;padding:15px;font-size:1rem}
+.anim #res.show{animation:pop .4s}@keyframes pop{from{opacity:0;transform:scale(.94)}}
+.hd{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.hi2{width:46px;height:46px;border-radius:15px;background:color-mix(in srgb,var(--ac) 30%,transparent);color:var(--ac2);display:grid;place-items:center;font-size:20px;flex:none}
+.hd b{font-size:1.2rem;display:block}.hd small{color:var(--mut);font-size:.88rem}
+.seg{display:flex;padding:5px;border-radius:20px;background:var(--in);border:1px solid var(--bd)}
+.seg button{flex:1;padding:12px 4px;border:0;border-radius:16px;background:none;color:var(--mut);font-weight:600;font-size:.95rem}
+.seg button.on{background:var(--card);color:var(--tx);box-shadow:0 0 0 1px var(--bd)}
+.swt{display:flex;justify-content:space-between}
+.swt div{text-align:center;font-size:.78rem;color:var(--mut);font-weight:600}
+.swt span{display:block;width:54px;height:54px;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;color:#fff;font-size:22px;border:3px solid transparent}
+.swt .on span{box-shadow:0 0 0 3px var(--bg),0 0 0 6px var(--c)}.swt .on{color:var(--ac2)}
+.info{padding:16px;border-radius:18px;background:var(--in);border:1px solid var(--bd);color:var(--mut);line-height:1.6;font-size:.95rem;margin-bottom:14px}
+.row{display:flex;gap:10px}.row .btn{flex:1}
+.tg{display:flex;gap:14px;align-items:center;padding:14px 0}.tg+.tg{border-top:1px solid var(--bd)}
+.tg .hi2{background:var(--in);color:var(--ac2);border:1px solid var(--bd)}
+.tg div{flex:1}.tg b{display:block;font-size:1.1rem}.tg small{color:var(--mut);font-size:.88rem;line-height:1.4}
+.sl{position:relative;width:58px;height:34px;flex:none}.sl input{opacity:0;position:absolute;inset:0;width:100%;height:100%;margin:0;z-index:2}
+.sl i{position:absolute;inset:0;border-radius:99px;background:var(--bd);transition:.2s}
+.sl i:after{content:"";position:absolute;left:4px;top:4px;width:26px;height:26px;border-radius:50%;background:#fff;transition:.2s}
+.sl input:checked+i{background:linear-gradient(135deg,var(--ac),var(--ac2))}.sl input:checked+i:after{left:28px}
+.kv{display:flex;justify-content:space-between;padding:9px 0;color:var(--mut)}.kv b{color:var(--tx)}
+.hi{padding:14px 0;border-bottom:1px solid var(--bd);word-break:break-all;font-size:.85rem}.hi .row{margin-top:10px}
+.foot{text-align:center;color:var(--mut);font-size:.8rem;margin:26px 0}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:520px;display:flex;gap:6px;padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px));border-radius:30px 30px 0 0;border:1px solid var(--bd);border-bottom:0;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(20px)}
+nav button{flex:1;border:0;background:none;color:var(--mut);padding:10px 4px;border-radius:20px;font-size:.8rem;font-weight:700}
+nav button svg{display:block;margin:0 auto 4px;width:1.6em;height:1.6em}
+nav button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;box-shadow:0 6px 22px color-mix(in srgb,var(--ac) 45%,transparent)}
+</style></head><body class="anim">
+
+<!-- BERANDA -->
+<section class="page on" id="p0">
+<div class="card" style="padding:14px">
+<div class="kv"><span>ID kamu</span><b id="uid" style="cursor:pointer"></b></div><div class="kv"><span>Status</span><b id="stat"></b></div></div>
+
+<div class="logo"><i data-i="bolt"></i></div>
+<h1>Kyzz Bypass</h1>
+<p class="sub">Tempel tautan sfl.gl / Safelinku, tekan tombol, dan dapatkan link tujuannya — tanpa iklan, tanpa tunggu.</p>
+<div class="pills"><div class="pill a"><i data-i="speed"></i>Super cepat</div><div class="pill"><i data-i="lock"></i>Riwayat tersimpan lokal</div><div class="pill"><i data-i="drop"></i>Liquid Glass v2</div></div>
+
+<div class="card">
+<div class="lb">Tautan Safelinku</div>
+<div class="iw"><i data-i="link"></i><input type="text" id="url" placeholder="https://sfl.gl/xxxxx" autocomplete="off"><button class="x" id="x"><i data-i="close"></i></button></div>
+<button class="btn" id="go"><i data-i="bolt"></i> Bypass Sekarang</button>
+<div class="bar" id="barW"><i id="bar"></i></div>
+<div class="st" id="st"></div>
+<p class="hint">Dukung <b>sfl.gl</b>, safelinku.net, tutwuri.id, safelinkku.com &amp; blog wpsafelink</p>
+</div>
+<div class="card" id="res" style="display:none"></div>
+</section>
+
+<!-- RIWAYAT -->
+<section class="page" id="p1">
+<div class="logo"><i data-i="hist"></i></div><h1 style="font-size:2rem;color:var(--tx)">Riwayat</h1>
+<p class="sub">Semua tautan yang pernah kamu bypass — tersimpan hanya di perangkat ini.</p>
+<div class="card" id="hist"></div>
+</section>
+
+<!-- PENGATURAN -->
+<section class="page" id="p2">
+<div class="card"><div class="hd"><div class="hi2"><i data-i="palette"></i></div><div><b>Tampilan</b><small>Mode terang, gelap, atau ikuti sistem</small></div></div>
+<div class="seg" id="theme"><button data-v="light"><i data-i="sun"></i> Terang</button><button data-v="dark"><i data-i="moon"></i> Gelap</button><button data-v="auto"><i data-i="mon"></i> Sistem</button></div></div>
+
+<div class="card"><div class="hd"><div class="hi2"><i data-i="wave"></i></div><div><b>Warna Table</b><small>Sentuhan warna untuk seluruh antarmuka</small></div></div>
+<div class="swt" id="sw"></div></div>
+
+<div class="card"><div class="hd"><div class="hi2"><i data-i="key"></i></div><div><b>Mesin Bypass</b><small>Dukungan sfl.gl, tutwuri.id &amp; safelinkku</small></div></div>
+<div class="info">Tautan diproses lewat API bawaan. Ganti endpoint hanya jika kamu punya API sendiri.</div>
+<div class="lb">Endpoint API</div>
+<div class="iw"><i data-i="key"></i><input type="text" id="api"></div>
+<div class="row"><button class="btn" id="apiS">Simpan</button><button class="btn g" id="apiR">Pakai Bawaan</button></div></div>
+
+<div class="card"><div class="hd"><div class="hi2"><i data-i="wave"></i></div><div><b>Efek &amp; Interaksi</b><small>Kenyamanan visual dan umpan balik</small></div></div>
+<div class="tg"><div class="hi2"><i data-i="pulse"></i></div><div><b>Animasi</b><small>Transisi halus &amp; efek bergerak. Matikan untuk tampilan statis.</small></div><label class="sl"><input type="checkbox" id="tAn"><i></i></label></div>
+<div class="tg"><div class="hi2"><i data-i="phone"></i></div><div><b>Getaran (Haptic)</b><small>Umpan balik getar saat menyalin &amp; menekan tombol.</small></div><label class="sl"><input type="checkbox" id="tHa"><i></i></label></div></div>
+
+<div class="card"><div class="hd"><div class="hi2"><i data-i="phone"></i></div><div><b>Perangkat</b><small>Terdeteksi otomatis — UI menyesuaikan layout</small></div></div>
+<div class="info" id="dev" style="padding:8px 16px"></div></div>
+
+<div class="card"><div class="hd"><div class="hi2"><i data-i="info"></i></div><div><b>Tentang</b><small>Informasi aplikasi</small></div></div>
+<div class="hd"><div class="hi2" style="width:58px;height:58px;background:linear-gradient(145deg,var(--ac),var(--ac2));color:#fff;font-size:26px"><i data-i="bolt"></i></div><div><b>Kyzz Bypass <span style="color:var(--ac2)">v2</span></b><small>Liquid Glass UI · Tanpa pelacakan</small></div></div>
+<div class="info"><b style="color:var(--ac2)">Pencipta: kyzz</b><br>• User: 10 bypass / 24 jam<br>• Admin: tanpa limit<br>• Riwayat, salin &amp; hapus per item<br>• Hasil cepat, 3 percobaan paralel</div></div>
+</section>
+
+<p class="foot">Kyzz Bypass v2 · Liquid Glass UI · Gunakan secara bijak &amp; bertanggung jawab</p>
+
+<nav>
+<button class="on" data-p="0"><i data-i="home"></i>Beranda</button>
+<button data-p="1"><i data-i="hist"></i>Riwayat</button>
+<button data-p="2"><i data-i="sl"></i>Pengaturan</button>
+</nav>
+
+<script>
+const PUB={"key_ops":["verify"],"ext":true,"kty":"EC","x":"HuX9iqenG8EYPgMNLeHbBaqI5u0-qYo3lq4-rYtqaL0","y":"HRHRZ8ccCeuAQMPtcJsZBWpXt0eI1p9VSjHrpDK1kw4","crv":"P-256"};const LIMIT=10,DAY=864e5;
+const DEF_API="https://api.ikyyxd.my.id/tools/skiplink/sfl?url=";
+const COLORS={Ungu:["#c05cff","#d98cff"],Indigo:["#6c6cff","#9a9aff"],Biru:["#1e90ff","#6cb8ff"],Pink:["#ff4d7a","#ff8aa8"],Oranye:["#ff9f1c","#ffc15c"],Hijau:["#2ecc71","#7be3a6"]};
+const IC={bolt:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',home:'<path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/>',hist:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/>',sl:'<path d="M4 6h9M17 6h3M4 18h3M11 18h9"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="18" r="2"/>',speed:'<path d="M12 14l4-4"/><path d="M3.3 17a10 10 0 1 1 17.4 0"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',drop:'<path d="M12 3s7 7 7 12a7 7 0 0 1-14 0c0-5 7-12 7-12z"/>',close:'<path d="M6 6l12 12M18 6L6 18"/>',palette:'<path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2s0-2 1.5-2h2a3 3 0 0 0 3-3 9 9 0 0 0-8-11z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',moon:'<path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/>',mon:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',wave:'<path d="M3 8c3-3 6 3 9 0s6 3 9 0M3 14c3-3 6 3 9 0s6 3 9 0"/>',key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>',pulse:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',check:'<path d="M5 12l5 5 9-10"/>',copy:'<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h3"/>',ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'};
+const ico=n=>'<svg viewBox="0 0 24 24">'+IC[n]+'</svg>';
+const paint=r=>(r||document).querySelectorAll("i[data-i]").forEach(e=>{e.outerHTML=ico(e.dataset.i)});
+const $=i=>document.getElementById(i);
+const S={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let wonder=false,busy=false,EXP=0;
+let UID=S.get("uid","");if(!UID){const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";for(const x of crypto.getRandomValues(new Uint8Array(6)))s+=a[x%a.length];UID="KY-"+s;S.set("uid",UID)}
+const vib=n=>{if(S.get("ha",true)&&navigator.vibrate)navigator.vibrate(n)};
+paint();
+
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".page").forEach((p,i)=>p.classList.toggle("on",i==b.dataset.p));
+  if(b.dataset.p==1)renderHist();vib(8);window.scrollTo(0,0)});
+
+function applyTheme(){
+  let t=S.get("theme","dark");if(t==="auto")t=matchMedia("(prefers-color-scheme:light)").matches?"light":"dark";
+  const r=document.documentElement;r.dataset.t=t;
+  const c=COLORS[S.get("color","Ungu")];r.style.setProperty("--ac",c[0]);r.style.setProperty("--ac2",c[1]);
+  document.body.classList.toggle("anim",S.get("an",true));
+  document.querySelectorAll("#theme button").forEach(b=>b.classList.toggle("on",b.dataset.v===S.get("theme","dark")));
+  document.querySelectorAll("#sw>div").forEach(d=>d.classList.toggle("on",d.dataset.n===S.get("color","Ungu")));
+}
+document.querySelectorAll("#theme button").forEach(b=>b.onclick=()=>{S.set("theme",b.dataset.v);applyTheme()});
+Object.entries(COLORS).forEach(([n,c])=>{const d=document.createElement("div");d.dataset.n=n;d.style.setProperty("--c",c[0]);
+  d.innerHTML='<span style="background:linear-gradient(135deg,'+c[0]+','+c[1]+')">'+ico("check")+'</span>'+n;
+  d.onclick=()=>{S.set("color",n);applyTheme();vib(8)};$("sw").appendChild(d)});
+$("tAn").checked=S.get("an",true);$("tHa").checked=S.get("ha",true);
+$("tAn").onchange=e=>{S.set("an",e.target.checked);applyTheme()};
+$("tHa").onchange=e=>S.set("ha",e.target.checked);
+$("api").value=S.get("api",DEF_API);
+$("apiS").onclick=()=>{S.set("api",$("api").value.trim()||DEF_API);vib(10)};
+$("apiR").onclick=()=>{S.set("api",DEF_API);$("api").value=DEF_API};
+
+(function(){const w=innerWidth,h=innerHeight,ua=navigator.userAgent;
+ const os=/Android/i.test(ua)?"Android":/iPhone|iPad/i.test(ua)?"iOS":/Windows/i.test(ua)?"Windows":/Mac/i.test(ua)?"macOS":"Lainnya";
+ const g=(a,b)=>b?g(b,a%b):a,d=g(w,h);
+ const rows=[["Sistem Operasi",os],["Mode Tampilan",w<600?"Mode Ponsel":"Mode Desktop"],["Rasio Layar",Math.round(h/w*9)>0?(h>w?"9:"+Math.round(h/w*9):Math.round(w/h*9)+":9"):"-"],["Layar Aktif",w+" × "+h],["Layar Sentuh","ontouchstart" in window?"Ya":"Tidak"]];
+ $("dev").innerHTML=rows.map(r=>'<div class="kv"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>').join("")})();
+
+const uses=()=>S.get("uses",[]).filter(t=>Date.now()-t<DAY);
+function stat(){$("stat").textContent=wonder?"Premium · "+(EXP>=2e13?"permanen":"s/d "+new Date(EXP).toLocaleDateString("id-ID")):"Free · sisa "+(LIMIT-uses().length)+"/"+LIMIT}
+const b64u=s=>Uint8Array.from(atob(s.replace(/-/g,"+").replace(/_/g,"/")),c=>c.charCodeAt(0));
+async function check(tok){
+ try{const p=String(tok).trim().split(".");if(p.length!==3||p[0]!=="KYZZ")return 0;
+  const k=await crypto.subtle.importKey("jwk",PUB,{name:"ECDSA",namedCurve:"P-256"},false,["verify"]);
+  const ok=await crypto.subtle.verify({name:"ECDSA",hash:"SHA-256"},k,b64u(p[2]),new TextEncoder().encode(p[1]));
+  if(!ok)return 0;const d=JSON.parse(new TextDecoder().decode(b64u(p[1])));
+  return d.u===UID&&d.e>Date.now()?d.e:0}catch(e){return 0}}
+async function activate(t){const e=await check(t);if(e){EXP=e;wonder=true;S.set("tok",String(t).trim());vib(20);return true}return false}
+
+const copy=t=>{try{navigator.clipboard.writeText(t);vib(15)}catch(e){}};
+function renderHist(){
+  const h=S.get("hist",[]),box=$("hist");box.innerHTML="";
+  if(!h.length){box.innerHTML='<p class="hint" style="margin:30px 0"><b>Belum ada riwayat</b><br>Tautan yang kamu bypass akan muncul di sini.</p>';return}
+  h.forEach((x,i)=>{const d=document.createElement("div");d.className="hi";
+    d.innerHTML='<div style="color:var(--mut)"></div><b></b><div class="row"></div>';
+    d.children[0].textContent=x.src;d.children[1].textContent=x.out;const r=d.children[2];
+    [["Salin",()=>copy(x.out),""],["Buka",()=>open(x.out,"_blank","noopener"),"g"],["Hapus",()=>{h.splice(i,1);S.set("hist",h);renderHist()},"g"]].forEach(a=>{
+      const b=document.createElement("button");b.className="btn s "+a[2];b.textContent=a[0];b.onclick=a[1];r.appendChild(b)});
+    box.appendChild(d)});
+}
+
+const HOSTS=/(^|\.)(sfl\.gl|safelinku\.net|safelinku\.com|tutwuri\.id|safelinkku\.com)$/i;
+const prog=(p,t)=>{$("barW").style.display=$("st").style.display="block";$("bar").style.width=p+"%";$("st").innerHTML=t};
+const pick=j=>{const R=j&&j.result;return (R&&(R.destinationUrl||R.url||R.result))||(typeof R==="string"?R:"")||(j&&(j.url||j.destination))||""};
+function hedged(link){
+  const api=S.get("api",DEF_API),ctrls=[];
+  return new Promise((ok,fail)=>{
+    let left=3,done=false;const end=()=>ctrls.forEach(c=>c.abort());
+    const run=()=>{const c=new AbortController();ctrls.push(c);
+      fetch(api+encodeURIComponent(link),{signal:c.signal}).then(r=>r.text()).then(t=>{
+        let o="";try{o=pick(JSON.parse(t))}catch(e){o=t.trim()}
+        if(/^https?:\/\//i.test(o)){if(!done){done=true;end();ok(o)}}else throw 0;
+      }).catch(()=>{if(!done&&--left===0)fail(new Error("Server gagal / link ditolak"))})};
+    run();setTimeout(()=>!done&&run(),1000);setTimeout(()=>!done&&run(),2000);
+    setTimeout(()=>{if(!done){done=true;end();fail(new Error("Timeout 8 detik"))}},8000);
+  });
+}
+
+$("url").oninput=()=>{$("x").style.display=$("url").value?"grid":"none"};
+$("x").onclick=()=>{$("url").value="";$("x").style.display="none";$("res").style.display="none";$("barW").style.display=$("st").style.display="none"};
+
+$("go").onclick=async()=>{
+  if(busy)return;$("res").style.display="none";
+  const m=$("url").value.match(/https?:\/\/[^\s]+/i);
+  if(!m)return prog(0,"❌ <b>Link tidak valid</b>");
+  const link=m[0];let h;try{h=new URL(link).hostname}catch(e){return prog(0,"❌ <b>Link tidak valid</b>")}
+  if(!HOSTS.test(h))return prog(0,"❌ <b>Hanya sfl.gl / safelinku / tutwuri</b>");
+  if(!wonder&&uses().length>=LIMIT)return prog(0,"❌ <b>Limit habis</b> (10 / 24 jam)");
+  busy=true;$("go").disabled=true;vib(10);const t0=Date.now();
+  prog(15,"✔ <b>Link valid</b>");
+  const cache=S.get("hist",[]).find(x=>x.src===link);
+  try{
+    let out;
+    if(cache){out=cache.out;prog(80,"⚡ <b>Ambil dari riwayat</b>")}
+    else{prog(40,"✔ Link valid<br>⏳ <b>Proses bypass...</b>");out=await hedged(link)}
+    $("barW").style.display=$("st").style.display="none";
+    const r=$("res"),sec=((Date.now()-t0)/1000).toFixed(1).replace(".",",");
+    r.style.display="block";r.classList.remove("show");void r.offsetWidth;r.classList.add("show");
+    r.innerHTML='<div class="rh"><div class="ck">'+ico("check")+'</div><b>Bypass berhasil!</b><span class="tm"></span></div><div class="lk"></div><div class="rb"><button class="btn" id="cp">'+ico("copy")+' Salin Link</button><button class="btn g" id="op">'+ico("ext")+' Buka Link</button></div>';
+    r.querySelector(".tm").textContent=sec+" dtk · Mesin Ikyyxd";
+    r.querySelector(".lk").textContent=out;
+    $("cp").onclick=()=>{copy(out);$("cp").innerHTML=ico("check")+" Tersalin"};
+    $("op").onclick=()=>open(out,"_blank","noopener");
+    r.scrollIntoView({behavior:"smooth",block:"center"});
+    if(!cache){const hh=S.get("hist",[]);hh.unshift({src:link,out});S.set("hist",hh.slice(0,50));
+      if(!wonder){const u=uses();u.push(Date.now());S.set("uses",u)}}
+    vib([20,40,20]);
+  }catch(e){prog(0,"❌ <b>Gagal:</b> "+e.message+"<br>Coba lagi.")}
+  busy=false;$("go").disabled=false;stat();
+};
+$("uid").textContent=UID;$("uid").onclick=()=>{copy(UID);$("uid").textContent="✓ Tersalin";setTimeout(()=>$("uid").textContent=UID,1200)};
+applyTheme();stat();
+(async()=>{const t=S.get("tok","");if(t){EXP=await check(t);wonder=!!EXP;if(!EXP)S.set("tok","")}
+ const m=location.hash.match(/k=([^&]+)/);
+ if(m){const ok=await activate(decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname+location.search);alert(ok?"Premium aktif ✔":"Kode tidak valid, kedaluwarsa, atau bukan untuk ID ini")}
+ stat()})();
+</script></body></html>
